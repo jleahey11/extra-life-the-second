@@ -15,6 +15,7 @@ const Rules = props => (
                 <li>Stage Hazard Toggle: Off</li>
                 <li>Final Smash Meter: Off</li>
                 <li>Battlefield & Omega Stages</li>
+                <li>Tentative: Double Elimination</li>
             </ul>
         </Typography>
     </>

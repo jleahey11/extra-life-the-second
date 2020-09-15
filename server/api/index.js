@@ -1,5 +1,6 @@
 import express from 'express';
 
+import challonge from './challonge';
 import teams from './teams';
 
 let cache = new Map();
@@ -24,6 +25,7 @@ let middleware = (req, res, next) => {
     }
 };
 
+router.use('/challonge', [middleware, challonge]);
 router.use('/teams', [middleware, teams]);
 
 export default router;
