@@ -10,9 +10,6 @@ const teamId = '51804';
 const twitchUsernames = [
   'pyroticblaziken'
 ];
-const twitchChannelIds = [
-  23679089
-];
 
 const mapDispatchToProps = dispatch => ({
   getDonations: id => {

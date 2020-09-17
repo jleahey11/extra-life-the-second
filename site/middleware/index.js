@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import donationMiddleware from './donations';
 import donorMiddleware from './donors';
 import teamMiddleware from './team';
+import tournamentMiddleware from './tournament';
 import twitchMiddleware from './twitch';
 
 const allMiddleware = applyMiddleware(
@@ -13,6 +14,7 @@ const allMiddleware = applyMiddleware(
     donorMiddleware,
     teamMiddleware,
     thunk,
+    tournamentMiddleware,
     twitchMiddleware
 );
 
