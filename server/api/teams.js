@@ -9,51 +9,82 @@ let teamDonations = new Map();
 let teamDonors = new Map();
 
 router.get('/:teamId/donors', (req, res) => {
-    let { teamId } = req.params;
-    let currentTime = new Date().getTime();
-    let timeDiff = currentTime - lastPull;
-    if (timeDiff >= refreshPeriod || !teamDonors.has(teamId)) {
-        axios.get(`https://www.extra-life.org/api/teams/${teamId}/donors`)
-            .then(response => {
-                teamDonors[teamId] = response.data;
-                lastPull = currentTime;
-                res.send(teamDonors[teamId]);
-            }).catch(err => res.status(500).send(err));
-    } else {
-        res.send(teamDonors[teamId]);
-    }
+  let { teamId } = req.params;
+
+  axios.get(`https://www.extra-life.org/api/teams/${teamId}/donors`)
+    .then(response => {
+      let teamDonors = response.data;
+      res.send(teamDonors);
+    }).catch(err => res.status(500).send(err));
 });
+
+// router.get('/:teamId/donors', (req, res) => {
+//     let { teamId } = req.params;
+//     let currentTime = new Date().getTime();
+//     let timeDiff = currentTime - lastPull;
+//     if (timeDiff >= refreshPeriod || !teamDonors.has(teamId)) {
+//         axios.get(`https://www.extra-life.org/api/teams/${teamId}/donors`)
+//             .then(response => {
+//                 teamDonors[teamId] = response.data;
+//                 lastPull = currentTime;
+//                 res.send(teamDonors[teamId]);
+//             }).catch(err => res.status(500).send(err));
+//     } else {
+//         res.send(teamDonors[teamId]);
+//     }
+// });
 
 router.get('/:teamId/donations', (req, res) => {
-    let { teamId } = req.params;
-    let currentTime = new Date().getTime();
-    let timeDiff = currentTime - lastPull;
-    if (timeDiff >= refreshPeriod || !teamDonations.has(teamId)) {
-        axios.get(`https://www.extra-life.org/api/teams/${teamId}/donations`)
-            .then(response => {
-                teamDonations[teamId] = response.data;
-                lastPull = currentTime;
-                res.send(teamDonations[teamId]);
-            }).catch(err => res.status(500).send(err));
-    } else {
-        res.send(teamDonations[teamId]);
-    }
+  let { teamId } = req.params;
+
+  axios.get(`https://www.extra-life.org/api/teams/${teamId}/donations`)
+    .then(response => {
+      let teamDonations = response.data;
+      res.send(teamDonations);
+    }).catch(err => res.status(500).send(err));
 });
 
+// router.get('/:teamId/donations', (req, res) => {
+//     let { teamId } = req.params;
+//     let currentTime = new Date().getTime();
+//     let timeDiff = currentTime - lastPull;
+//     if (timeDiff >= refreshPeriod || !teamDonations.has(teamId)) {
+//         axios.get(`https://www.extra-life.org/api/teams/${teamId}/donations`)
+//             .then(response => {
+//                 teamDonations[teamId] = response.data;
+//                 lastPull = currentTime;
+//                 res.send(teamDonations[teamId]);
+//             }).catch(err => res.status(500).send(err));
+//     } else {
+//         res.send(teamDonations[teamId]);
+//     }
+// });
+
+
 router.get('/:teamId', (req, res) => {
-    let { teamId } = req.params;
-    let currentTime = new Date().getTime();
-    let timeDiff = currentTime - lastPull;
-    if (timeDiff >= refreshPeriod || !teams.has(teamId)) {
-        axios.get(`https://www.extra-life.org/api/teams/${teamId}`)
-            .then(response => {
-                teams[teamId] = response.data;
-                lastPull = currentTime;
-                res.send(teams[teamId]);
-            }).catch(err => res.status(500).send(err));
-    } else {
-        res.send(teams[teamId]);
-    }
+  let { teamId } = req.params;
+
+  axios.get(`https://www.extra-life.org/api/teams/${teamId}`)
+    .then(response => {
+      let team = response.data;
+      res.send(team);
+    }).catch(err => res.status(500).send(err));
 });
+
+// router.get('/:teamId', (req, res) => {
+//     let { teamId } = req.params;
+//     let currentTime = new Date().getTime();
+//     let timeDiff = currentTime - lastPull;
+//     if (timeDiff >= refreshPeriod || !teams.has(teamId)) {
+//         axios.get(`https://www.extra-life.org/api/teams/${teamId}`)
+//             .then(response => {
+//                 teams[teamId] = response.data;
+//                 lastPull = currentTime;
+//                 res.send(teams[teamId]);
+//             }).catch(err => res.status(500).send(err));
+//     } else {
+//         res.send(teams[teamId]);
+//     }
+// });
 
 export default router;

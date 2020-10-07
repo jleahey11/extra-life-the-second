@@ -7,10 +7,9 @@ const API_KEY = process.env.CHALLONGE_API_KEY || 'INVALID_API_KEY';
 
 router.get('/:tournamentId', (req, res) => {
   let { tournamentId } = req.params;
-  axios.get(`https://${USERNAME}:${API_KEY}@api.challonge.com/v1/tournaments/${tournamentId}.json`)
+  axios.get(`https://api.challonge.com/v1/tournaments/${tournamentId}.json?api_key=${API_KEY}`)
     .then(response => {
-      tournament = response.data.tournament;
-      lastPull = currentTime;
+      let tournament = response.data.tournament;
       res.send(tournament);
     }).catch(err => res.status(500).send(err));
 });
@@ -19,8 +18,7 @@ router.get('/:tournamentId/participants', (req, res) => {
   let { tournamentId } = req.params;
   axios.get(`https://${USERNAME}:${API_KEY}@api.challonge.com/v1/tournaments/${tournamentId}/participants.json`)
     .then(response => {
-      tournament = response.data.tournament;
-      lastPull = currentTime;
+      let tournament = response.data.tournament;
       res.send(tournament);
     }).catch(err => res.status(500).send(err));
 });
@@ -29,8 +27,7 @@ router.get('/:tournamentId/matches', (req, res) => {
   let { tournamentId } = req.params;
   axios.get(`https://${USERNAME}:${API_KEY}@api.challonge.com/v1/tournaments/${tournamentId}/matches.json`)
     .then(response => {
-      tournament = response.data.tournament;
-      lastPull = currentTime;
+      let tournament = response.data.tournament;
       res.send(tournament);
     }).catch(err => res.status(500).send(err));
 });
