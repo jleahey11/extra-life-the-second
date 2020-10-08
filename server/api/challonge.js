@@ -9,6 +9,7 @@ router.get('/:tournamentId', (req, res) => {
   let { tournamentId } = req.params;
   axios.get(`https://api.challonge.com/v1/tournaments/${tournamentId}.json?api_key=${API_KEY}`)
     .then(response => {
+      // console.log(response);
       let tournament = response.data.tournament;
       res.send(tournament);
     }).catch(err => res.status(500).send(err));

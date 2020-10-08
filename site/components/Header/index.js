@@ -29,6 +29,7 @@ const Header = props => {
   const imageSrc = isMobile ? ControllerImage : ExtraLifeLogo;
 
   const handleClick = (event) => {
+    // console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
@@ -76,7 +77,13 @@ const Header = props => {
             component={RouterLink}
             to="/community"
             onClick={handleClose}
-            >Community</MenuItem>
+            >Twitch</MenuItem>
+          <Divider />
+          <MenuItem
+            component={RouterLink}
+            to="/smash"
+            onClick={handleClose}
+            >Smash Tournament</MenuItem>
           <Divider />
           <MenuItem
             component={RouterLink}
@@ -102,10 +109,10 @@ const Header = props => {
         <Button component={RouterLink} to="/" className={classes.centerButton}>
           Home
         </Button>
-        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className={classes.centerButton}>
+        <Button id="event-info" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className={classes.centerButton}>
           Event Info
         </Button>
-        <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} className={classes.centerButton}>
+        <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl) && anchorEl.id == "event-info"} onClose={handleClose} className={classes.centerButton}>
           <MenuItem
             component={RouterLink}
             to="/schedule"
@@ -122,9 +129,21 @@ const Header = props => {
             onClick={handleClose}
             >Games List</MenuItem>
         </Menu>
-        <Button component={RouterLink} to="/community" className={classes.centerButton}>
+        <Button id="community" aria-controls="simple-menu-2" aria-haspopup="true" onClick={handleClick} className={classes.centerButton}>
           Community
         </Button>
+        <Menu id="simple-menu-2" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl) && anchorEl.id == "community"} onClose={handleClose} className={classes.centerButton}>
+          <MenuItem
+            component={RouterLink}
+            to="/community"
+            onClick={handleClose}
+            >Twitch</MenuItem>
+          <MenuItem
+            component={RouterLink}
+            to="/smash"
+            onClick={handleClose}
+            >Smash Tournament</MenuItem>
+        </Menu>
         <Button component={RouterLink} to="/aboutus" className={classes.centerButton}>
           About Us
         </Button>

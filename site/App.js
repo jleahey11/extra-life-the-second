@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import { DonationActions, DonorActions, TeamActions, TwitchActions } from './actions';
+import { DonationActions, DonorActions, TeamActions, TournamentActions, TwitchActions } from './actions';
 import Header from './components/Header';
 import Router from './components/Router';
 
 const teamId = '51804';
+const tournamentId = "3e35s7fo";
 const twitchUsernames = [
   'pyroticblaziken'
 ];
@@ -20,6 +21,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getTeam: id => {
     dispatch(TeamActions.getTeam(id));
+  },
+  getTournament: id => {
+    dispatch(TournamentActions.getTournament(id));
   },
   getTwitchUsers: usernames => {
     dispatch(TwitchActions.getTwitchUsers(usernames));
@@ -39,6 +43,7 @@ const App = props => {
     props.getDonations(teamId);
     props.getDonors(teamId);
     props.getTeam(teamId);
+    props.getTournament(tournamentId);
     props.getTwitchUsers(twitchUsernames);
   }, []);
 

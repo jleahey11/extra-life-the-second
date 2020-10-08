@@ -7,10 +7,12 @@ import Participation from '../../components/Smash/Participation';
 import Roster from '../../components/Smash/Roster';
 import { TournamentActions } from '../../actions';
 
+import { useDefaultStyles } from '../../styles';
+
 const tournamentId = "3e35s7fo";
 
 const mapStateToProps = state => ({
-  tournament = state.tournament.tournament,
+  tournament: state.tournament,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,13 +22,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const SmashTournamentPage = ({ tournament, getTournament }) => {
+  const classes = useDefaultStyles();
 
   useEffect(() => {
     getTournament(tournamentId);
   }, []);
 
   return (
-    <Grid container>
+    <Grid container className={classes.main}>
       <Grid item xs={12}>
         <Typography align="center" variant="h2">Smash Bros Ultimate Tournament</Typography>
       </Grid>

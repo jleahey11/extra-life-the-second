@@ -16,9 +16,33 @@ const tournamentMiddleware = (store) => (next) => (action) => {
   let request;
 
   switch(action.type) {
+    case TournamentActions.GET_TOURNAMENT:
+      request = {
+        endpoint: `${window.location.host}/api/challonge/${action.id}`,
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        types: [
+          TournamentActions.FETCH_TOURNAMENT_REQUEST,
+          TournamentActions.FETCH_TOURNAMENT_SUCCESS,
+          TournamentActions.FETCH_TOURNAMENT_FAILURE
+        ]
+      };
+      break;
+    case TournamentActions.GET_TOURNAMENT_MATCHES:
+      request = {
+        endpoint: `${window.location.host}/api/challonge/${action.tournamentId}/matches`,
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        types: [
+          TournamentActions.FETCH_TOURNAMENT_MATCHES_REQUEST,
+          TournamentActions.FETCH_TOURNAMENT_MATCHES_SUCCESS,
+          TournamentActions.FETCH_TOURNAMENT_MATCHES_FAILURE
+        ]
+      };
+      break;
     case TournamentActions.GET_TOURNAMENT_PARTICIPANTS:
       request = {
-        endpoint: `${window.location}api/challonge/${action.tournamentId}/participants`,
+        endpoint: `${window.location.host}/api/challonge/${action.tournamentId}/participants`,
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         types: [
@@ -32,6 +56,7 @@ const tournamentMiddleware = (store) => (next) => (action) => {
       return;
   }
 
+  console.log(request);
   if (!!request) store.dispatch(createAction(request));
 }
 
