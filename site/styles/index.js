@@ -29,11 +29,6 @@ const POLYGON_PATH = `polygon(
   calc(100% - ${a}px) 0
 )`;
 
-const simplyStylish = makeStyles({
-  
-});
-
-
 const useDefaultStyles = makeStyles((theme => ({
   main: {
     margin: '0 auto',
@@ -48,7 +43,7 @@ const useDefaultStyles = makeStyles((theme => ({
     margin: '5px',
     // outline: 'solid 8px black'
   },
-  cssButton: {
+  hollowComponent: {
     background: 'rgba(0,0,0,0)',
     minWidth: '64px',
     position: 'relative',
@@ -67,6 +62,9 @@ const useDefaultStyles = makeStyles((theme => ({
       right: '0px',
       bottom: '0px'
     }
+  },
+  dataGridItem: {
+    borderRight: 'solid'
   }
 })));
 

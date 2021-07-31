@@ -32,7 +32,6 @@ const App = props => {
 
   return (
     <Paper>
-      <Header />
       <Hero />
       <Sponsor />
       <Mission />
